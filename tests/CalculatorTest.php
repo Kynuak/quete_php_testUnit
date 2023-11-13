@@ -1,6 +1,7 @@
 <?php
 
 use App\Calculator;
+use PHPUnit\Framework\Constraint\Callback;
 use PHPUnit\Framework\TestCase;
 
 
@@ -21,5 +22,29 @@ class CalculatorTest extends TestCase
         $this->assertSame($expectedResult, $sum, 
             "La méthode sum() ne fonctionne plus :-("
         );
+    }
+
+    public function testMultiplication(): void
+    {
+        //Arange
+        $firstValue = 10;
+        $secondValue = 20;
+        $expectedResult = 200;
+
+        $calculator = new Calculator();
+        $mul = $calculator->multiplication($firstValue, $secondValue);
+
+        $this->assertSame($expectedResult, $mul, 
+            "La méthode mul() ne fonctionne pas ! "
+        );
+    }
+
+    public function testIsEven(): void
+    {
+        $value = 2;
+
+        $calculator = new Calculator();
+        $isEven = $calculator->isEven($value);
+        $this->assertTrue(true === $isEven, "La méthode ne dit pas s'il est pair");
     }
 }
